@@ -1,0 +1,12 @@
+# Core data stack
+requests>=2.31.0
+pandas>=2.1.0
+numpy>=1.26.0
+
+# Notebook execution
+jupyter>=1.0.0
+nbconvert>=7.11.0
+ipykernel>=6.27.0
+
+# Kaggle API (dataset upload)
+kaggle>=1.6.0

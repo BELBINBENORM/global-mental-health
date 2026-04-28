@@ -1,0 +1,95 @@
+{
+  "title": "Global Mental Health Crisis Tracker (2000–Present)",
+  "id": "belbino/global-mental-health-crisis-2000-present",
+  "licenses": [
+    {
+      "name": "CC0-1.0"
+    }
+  ],
+  "keywords": [
+    "mental health",
+    "depression",
+    "anxiety",
+    "suicide",
+    "global health",
+    "who",
+    "world bank",
+    "ihme",
+    "gbd",
+    "longitudinal",
+    "panel data",
+    "machine learning"
+  ],
+  "collaborators": [],
+  "data": [
+    {
+      "description": "IHME GBD depression and anxiety age-standardised prevalence rates by country and year",
+      "name": "prevalence",
+      "path": "prevalence.csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "title": "ISO-3166 Alpha-3 country code", "type": "string" },
+          { "name": "country_name", "title": "Country display name", "type": "string" },
+          { "name": "year", "title": "Calendar year", "type": "integer" },
+          { "name": "depression_prevalence_pct", "title": "Age-std depression prevalence %", "type": "number" },
+          { "name": "anxiety_prevalence_pct", "title": "Age-std anxiety prevalence %", "type": "number" },
+          { "name": "combined_prevalence_pct", "title": "Sum of depression + anxiety (capped 100%)", "type": "number" }
+        ]
+      }
+    },
+    {
+      "description": "WHO age-standardised suicide mortality rate per 100k population with sex breakdown",
+      "name": "suicide_rates",
+      "path": "suicide_rates.csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "title": "ISO-3166 Alpha-3 country code", "type": "string" },
+          { "name": "year", "title": "Calendar year", "type": "integer" },
+          { "name": "suicide_rate_per_100k", "title": "Age-std suicide mortality per 100k (SDG 3.4.2)", "type": "number" },
+          { "name": "suicide_rate_male_per_100k", "title": "Male age-std suicide rate per 100k", "type": "number" },
+          { "name": "suicide_rate_female_per_100k", "title": "Female age-std suicide rate per 100k", "type": "number" }
+        ]
+      }
+    },
+    {
+      "description": "WHO GHO mental health system capacity indicators per 100k population",
+      "name": "system_capacity",
+      "path": "system_capacity.csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "title": "ISO-3166 Alpha-3 country code", "type": "string" },
+          { "name": "year", "title": "Calendar year", "type": "integer" },
+          { "name": "psychiatrists_per_100k", "title": "Psychiatrists per 100k (MH_12)", "type": "number" },
+          { "name": "psychologists_per_100k", "title": "Psychologists per 100k (MH_13)", "type": "number" },
+          { "name": "mh_hospital_beds_per_100k", "title": "Mental hospital beds per 100k (MH_6)", "type": "number" },
+          { "name": "mh_outpatient_fac_per_100k", "title": "Outpatient MH facilities per 100k (MH_7)", "type": "number" }
+        ]
+      }
+    },
+    {
+      "description": "WHO GHO mental health policy and financing indicators",
+      "name": "policy_financing",
+      "path": "policy_financing.csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "title": "ISO-3166 Alpha-3 country code", "type": "string" },
+          { "name": "year", "title": "Calendar year", "type": "integer" },
+          { "name": "mh_policy_flag", "title": "1 = stand-alone national MH policy exists (MH_1)", "type": "integer" },
+          { "name": "mh_legislation_flag", "title": "1 = stand-alone MH legislation exists (MH_2)", "type": "integer" },
+          { "name": "mh_expenditure_pct_health", "title": "Govt MH spend as % of total health budget (MH_17)", "type": "number" },
+          { "name": "policy_implementation_score", "title": "0–3 composite policy score", "type": "integer" }
+        ]
+      }
+    },
+    {
+      "description": "Merged country × year panel with all derived metrics — primary analysis file",
+      "name": "mental_health_panel",
+      "path": "mental_health_panel.csv"
+    },
+    {
+      "description": "ML-ready feature matrix with lags, rolling windows, YoY rates, and next-year targets",
+      "name": "ml_features",
+      "path": "ml_features.csv"
+    }
+  ]
+}
