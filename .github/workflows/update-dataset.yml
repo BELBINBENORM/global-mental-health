@@ -12,22 +12,22 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      # Checkout repo 
+      # Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Python setup 
+      # Python setup
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: pip
 
-      #  Install dependencies
+      # Install dependencies
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Execute notebook 
+      # Execute notebook
       - name: Execute notebook
         run: |
           jupyter nbconvert \
@@ -40,7 +40,7 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"
 
-      # Verify output files were produced 
+      # Verify output files were produced
       - name: Verify outputs
         run: |
           for f in prevalence.csv suicide_rates.csv system_capacity.csv \
@@ -53,7 +53,7 @@ jobs:
             fi
           done
 
-      # Configure Kaggle credentials 
+      # Configure Kaggle credentials
       - name: Configure Kaggle credentials
         run: |
           mkdir -p ~/.kaggle
@@ -63,10 +63,18 @@ jobs:
           }' > ~/.kaggle/kaggle.json
           chmod 600 ~/.kaggle/kaggle.json
 
+      # Stage only the required output files
+      - name: Stage output files
+        run: |
+          mkdir -p kaggle_upload
+          cp prevalence.csv suicide_rates.csv system_capacity.csv \
+             policy_financing.csv mental_health_panel.csv ml_features.csv \
+             README.md kaggle_upload/
+
       # Push updated files to Kaggle dataset
       - name: Upload dataset to Kaggle
         run: |
           kaggle datasets version \
-            --path . \
+            --path kaggle_upload \
             --message "Auto-update $(date -u +%Y-%m-%d)" \
             --dir-mode zip
