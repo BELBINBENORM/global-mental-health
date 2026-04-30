@@ -68,7 +68,7 @@ jobs:
           mkdir -p kaggle_upload
           cp prevalence.csv suicide_rates.csv system_capacity.csv \
              policy_financing.csv mental_health_panel.csv ml_features.csv \
-             README.md kaggle_upload/
+             README.md dataset-metadata.json kaggle_upload/
 
       # Push updated files to Kaggle dataset
       - name: Upload dataset to Kaggle
